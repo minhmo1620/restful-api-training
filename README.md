@@ -7,7 +7,6 @@ $ pip3 install -r requirements.txt
 
 # Run the app
 ```
-$ python3 create_tables.py
 $ python3 app.py
 ```
 
