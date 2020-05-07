@@ -1,0 +1,4 @@
+requests == 2.18.4
+flask == 0.12.2
+Flask-JWT == 0.3.2
+Flask-RESTful == 0.3.8
