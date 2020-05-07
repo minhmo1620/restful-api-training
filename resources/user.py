@@ -1,55 +1,17 @@
-
 import sqlite3
 from flask_restful import Resource, reqparse
-
-class User:
-	def __init__(self, _id, username, password):
-		self.id = _id
-		self.username = username
-		self.password = password
-	
-	@classmethod
-	def find_by_username(cls, username):
-		connection = sqlite3.connect('data.db')
-		cursor = connection.cursor()
-
-		query = "SELECT 8 FROM users WHERE username=?"
-		result = cursor.execute(query,(username,))
-		row = result.fetchone()
-
-		if row:
-			user = cls(*row)
-		else:
-			user = None
-
-		return user
-
-	@classmethod
-	def find_by_id(cls, _id):
-		connection = sqlite3.connect('data.db')
-		cursor = connection.cursor()
-
-		query = "SELECT 8 FROM users WHERE id=?"
-		result = cursor.execute(query,(_id,))
-		row = result.fetchone()
-
-		if row:
-			user = cls(*row)
-		else:
-			user = None
-
-		return use
+from models.user import UserModel
 
 class UserRegister(Resource):
 	parser = reqparse.RequestParser()
-	parser.add_argument('username')
-	parser.add_argument('password')
+	parser.add_argument('username', type=str, required=True, help="This field cannot be blank")
+	parser.add_argument('password', type=str, required=True, help="This field cannot be blank")
 
 	def post(self):
 
 		data = UserRegister.parse.parse_args()
 
-		if User.find_by_username(data['username']):
+		if UserModel.find_by_username(data['username']):
 			return {'message':'existed account'}, 400
 
 		connection = sqlite.conenct('data.db')
