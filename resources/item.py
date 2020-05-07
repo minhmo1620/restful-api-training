@@ -38,8 +38,8 @@ class Item(Resource):
 		query = "DELETE FROM items WHERE name=?"
 		cursor.execute(query, (name,))
 
-		cursor.commit()
-		cursor.close()
+		connection.commit()
+		connection.close()
 
 		return {'message': 'Item deleted'}
 
@@ -73,7 +73,7 @@ class ItemList(Resource):
 		for row in result:
 			items.append({'name': row[0], 'price': row[1]})
 
-		cursor.commit()
-		cursor.close()
+		connection.commit()
+		connection.close()
 
 		return {'items':items}

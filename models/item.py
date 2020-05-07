@@ -1,3 +1,5 @@
+import sqlite3
+
 class ItemModel:
 	def __init__(self, name, price):
 		self.name = name
@@ -26,8 +28,8 @@ class ItemModel:
 		query = "INSERT INTO items VALUES (?, ?)"
 		cursor.execute(query, (self.name, self.price,))
 
-		cursor.commit()
-		cursor.close()
+		connection.commit()
+		connection.close()
 
 	def update(self):
 		connection = sqlite3.connect('data.db')
@@ -36,5 +38,5 @@ class ItemModel:
 		query = "UPDATE item SET price=? WHERE name=?"
 		cursor.execute(query, (self.name, self.price,))
 
-		cursor.commit()
-		cursor.close()
+		connection.commit()
+		connection.close()

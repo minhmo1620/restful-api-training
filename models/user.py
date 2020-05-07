@@ -11,7 +11,7 @@ class UserModel:
 		connection = sqlite3.connect('data.db')
 		cursor = connection.cursor()
 
-		query = "SELECT 8 FROM users WHERE username=?"
+		query = "SELECT * FROM users WHERE username=?"
 		result = cursor.execute(query,(username,))
 		row = result.fetchone()
 
@@ -27,7 +27,7 @@ class UserModel:
 		connection = sqlite3.connect('data.db')
 		cursor = connection.cursor()
 
-		query = "SELECT 8 FROM users WHERE id=?"
+		query = "SELECT * FROM users WHERE id=?"
 		result = cursor.execute(query,(_id,))
 		row = result.fetchone()
 
